@@ -2,6 +2,9 @@ package com.altorumleren.testdemo;
 
 import android.widget.EditText;
 
+import net.bytebuddy.build.ToStringPlugin;
+
+import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -63,5 +66,52 @@ public class MainActivityTest {
         when(activity.getTextFromField(any(EditText.class))).thenReturn("");
         float[] outputArray2 = activity.getOperands();
         assertEquals(0, outputArray2.length);
+    }
+
+    @Test
+    public void clearDisplayTest() {
+        activity.clearDisplay();
+        assertEquals("", activity.input1.getText().toString());
+        assertEquals("", activity.input2.getText().toString());
+        assertEquals("", activity.output.getText().toString());
+    }
+
+    @Test
+    public void setDisplayTest() {
+        activity.setDisplay("Infinity");
+        assertEquals("Infinity", activity.output.getText().toString());
+        activity.setDisplay(98.5f);
+        assertEquals(98.5f, Float.parseFloat(activity.output.getText().toString()), 0);
+        activity.setDisplay(new JSONObject());
+        assertEquals("Invalid parameter",activity.output.getText().toString());
+    }
+
+    @Test
+    public void handleTest() {
+        when(activity.getTextFromField(any(EditText.class))).thenReturn("4");
+        activity.handleAddition();
+        assertEquals("8.0", activity.output.getText().toString());
+        activity.handleSubtraction();
+        assertEquals("0.0", activity.output.getText().toString());
+        activity.handleMultiplication();
+        assertEquals("16.0", activity.output.getText().toString());
+        activity.handleDivision();
+        assertEquals("1.0", activity.output.getText().toString());
+        activity.clearDisplay();
+        assertEquals("", activity.output.getText().toString());
+        assertEquals("", activity.input1.getText().toString());
+        assertEquals("", activity.input2.getText().toString());
+    }
+
+    @Test
+    public void handleTestWithoutInit() {
+        activity.handleAddition();
+        assertEquals("Invalid input", activity.output.getText().toString());
+        activity.handleSubtraction();
+        assertEquals("Invalid input", activity.output.getText().toString());
+        activity.handleMultiplication();
+        assertEquals("Invalid input", activity.output.getText().toString());
+        activity.handleDivision();
+        assertEquals("Invalid input", activity.output.getText().toString());
     }
 }

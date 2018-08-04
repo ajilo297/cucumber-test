@@ -1,5 +1,6 @@
 package com.altorumleren.testdemo;
 
+import android.support.annotation.VisibleForTesting;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,9 +8,9 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity implements MainActivityInterface{
 
-    private EditText input1;
-    private EditText input2;
-    private EditText output;
+    @VisibleForTesting EditText input1;
+    @VisibleForTesting EditText input2;
+    @VisibleForTesting EditText output;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
