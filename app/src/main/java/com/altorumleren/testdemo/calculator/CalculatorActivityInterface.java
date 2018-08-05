@@ -1,9 +1,10 @@
-package com.altorumleren.testdemo;
+package com.altorumleren.testdemo.calculator;
 
 import android.view.View;
 import android.widget.EditText;
 
-public interface MainActivityInterface {
+public interface CalculatorActivityInterface {
+
     float add(float o1, float o2);
 
     float subtract(float o1, float o2);

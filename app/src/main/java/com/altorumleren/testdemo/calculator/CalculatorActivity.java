@@ -1,12 +1,16 @@
-package com.altorumleren.testdemo;
+package com.altorumleren.testdemo.calculator;
 
 import android.support.annotation.VisibleForTesting;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity implements MainActivityInterface{
+import com.altorumleren.testdemo.BaseActivity;
+import com.altorumleren.testdemo.R;
+
+public class CalculatorActivity extends BaseActivity implements CalculatorActivityInterface {
 
     @VisibleForTesting EditText input1;
     @VisibleForTesting EditText input2;
@@ -21,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityInter
         input2 = findViewById(R.id.input2);
         output = findViewById(R.id.output);
 
+        setupActionBar();
     }
 
     @Override

@@ -1,4 +1,5 @@
-Feature: Main Activity
+@calculator
+Feature: Calculator
   Scenario Outline: Test calculator operations
     Given I have a calculator activity
     When I enter operand1 <o1>

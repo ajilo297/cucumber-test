@@ -11,7 +11,8 @@ import cucumber.api.android.CucumberInstrumentationCore;
 
 @CucumberOptions(
         features = "features",
-        glue = "com.altorumleren.testdemo.test"
+        glue = "com.altorumleren.testdemo",
+        tags = "@calculator"
 )
 public class CucumberTestRunner extends MonitoringInstrumentation {
     private final CucumberInstrumentationCore instrumentationCore = new CucumberInstrumentationCore(this);

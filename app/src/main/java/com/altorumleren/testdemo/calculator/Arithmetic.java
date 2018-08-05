@@ -1,4 +1,4 @@
-package com.altorumleren.testdemo;
+package com.altorumleren.testdemo.calculator;
 
 import org.jetbrains.annotations.Contract;
 

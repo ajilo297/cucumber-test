@@ -1,11 +1,10 @@
-package com.altorumleren.testdemo.test;
+package com.altorumleren.testdemo.calculator;
 
 import android.content.Intent;
 import android.os.SystemClock;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 
-import com.altorumleren.testdemo.MainActivity;
 import com.altorumleren.testdemo.R;
 
 import org.junit.Rule;
@@ -27,12 +26,12 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static junit.framework.Assert.assertNotNull;
 
-public class MainActivitySteps {
+public class CalculatorActivitySteps {
 
     @Rule
-    ActivityTestRule<MainActivity> activityTestRule =
-            new ActivityTestRule<>(MainActivity.class, false, false);
-    private MainActivity activity;
+    ActivityTestRule<CalculatorActivity> activityTestRule =
+            new ActivityTestRule<>(CalculatorActivity.class, false, false);
+    private CalculatorActivity activity;
 
     @Before
     public void setup() {

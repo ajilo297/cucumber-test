@@ -54,8 +54,6 @@ dependencies {
     androidTestImplementation 'io.cucumber:cucumber-picocontainer:3.0.2'
 }
 
-
-
 // ==================================================================
 // Custom tasks
 // ==================================================================

@@ -1,9 +1,8 @@
-package com.altorumleren.testdemo;
+package com.altorumleren.testdemo.calculator;
 
 import android.view.View;
-import android.widget.EditText;
 
-import net.bytebuddy.build.ToStringPlugin;
+import com.altorumleren.testdemo.R;
 
 import org.json.JSONObject;
 import org.junit.After;
@@ -20,12 +19,12 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
 @RunWith(RobolectricTestRunner.class)
-public class MainActivityTest {
-    private MainActivity activity;
+public class CalculatorActivityTest {
+    private CalculatorActivity activity;
 
     @Before
     public void setup() {
-        activity = Robolectric.setupActivity(MainActivity.class);
+        activity = Robolectric.setupActivity(CalculatorActivity.class);
     }
 
     @After
