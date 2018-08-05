@@ -1,5 +1,6 @@
 package com.altorumleren.testdemo;
 
+import android.view.View;
 import android.widget.EditText;
 
 import net.bytebuddy.build.ToStringPlugin;
@@ -14,6 +15,7 @@ import org.robolectric.RobolectricTestRunner;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
@@ -23,7 +25,7 @@ public class MainActivityTest {
 
     @Before
     public void setup() {
-        activity = spy(Robolectric.setupActivity(MainActivity.class));
+        activity = Robolectric.setupActivity(MainActivity.class);
     }
 
     @After
@@ -58,12 +60,14 @@ public class MainActivityTest {
 
     @Test
     public void getOperandsTest() {
-        when(activity.getTextFromField(any(EditText.class))).thenReturn("4");
+        activity.input1.setText("100");
+        activity.input2.setText("20");
         float[] outputArray1 = activity.getOperands();
-        assertEquals(4f, outputArray1[0], 0);
-        assertEquals(4f, outputArray1[0], 0);
+        assertEquals(100f, outputArray1[0], 0);
+        assertEquals(20f, outputArray1[1], 0);
 
-        when(activity.getTextFromField(any(EditText.class))).thenReturn("");
+        activity.input1.setText("");
+        activity.input2.setText("");
         float[] outputArray2 = activity.getOperands();
         assertEquals(0, outputArray2.length);
     }
@@ -88,15 +92,16 @@ public class MainActivityTest {
 
     @Test
     public void handleTest() {
-        when(activity.getTextFromField(any(EditText.class))).thenReturn("4");
+        activity.input1.setText("100");
+        activity.input2.setText("20");
         activity.handleAddition();
-        assertEquals("8.0", activity.output.getText().toString());
+        assertEquals("120.0", activity.output.getText().toString());
         activity.handleSubtraction();
-        assertEquals("0.0", activity.output.getText().toString());
+        assertEquals("80.0", activity.output.getText().toString());
         activity.handleMultiplication();
-        assertEquals("16.0", activity.output.getText().toString());
+        assertEquals("2000.0", activity.output.getText().toString());
         activity.handleDivision();
-        assertEquals("1.0", activity.output.getText().toString());
+        assertEquals("5.0", activity.output.getText().toString());
         activity.clearDisplay();
         assertEquals("", activity.output.getText().toString());
         assertEquals("", activity.input1.getText().toString());
@@ -113,5 +118,67 @@ public class MainActivityTest {
         assertEquals("Invalid input", activity.output.getText().toString());
         activity.handleDivision();
         assertEquals("Invalid input", activity.output.getText().toString());
+    }
+
+    @Test
+    public void handleAddClickTest() {
+        activity.input1.setText("100");
+        activity.input2.setText("20");
+
+        View view = mock(View.class);
+        when(view.getId()).thenReturn(R.id.addButton);
+
+        activity.handleOperation(view);
+        assertEquals("120.0", activity.output.getText().toString());
+    }
+
+    @Test
+    public void handleSubtractClickTest() {
+        activity.input1.setText("100");
+        activity.input2.setText("20");
+
+        View view = mock(View.class);
+        when(view.getId()).thenReturn(R.id.subButton);
+
+        activity.handleOperation(view);
+        assertEquals("80.0", activity.output.getText().toString());
+    }
+
+    @Test
+    public void handleMultiplyClickTest() {
+        activity.input1.setText("100");
+        activity.input2.setText("20");
+
+        View view = mock(View.class);
+        when(view.getId()).thenReturn(R.id.multiplyButton);
+
+        activity.handleOperation(view);
+        assertEquals("2000.0", activity.output.getText().toString());
+    }
+
+    @Test
+    public void handleDivideClickTest() {
+        activity.input1.setText("100");
+        activity.input2.setText("20");
+
+        View view = mock(View.class);
+        when(view.getId()).thenReturn(R.id.divButton);
+
+        activity.handleOperation(view);
+        assertEquals("5.0", activity.output.getText().toString());
+    }
+
+    @Test
+    public void handleClearClickTest() {
+        activity.input1.setText("100");
+        activity.input2.setText("20");
+
+        View view = mock(View.class);
+        when(view.getId()).thenReturn(R.id.clrButton);
+
+        activity.handleOperation(view);
+        assertEquals("", activity.input1.getText().toString());
+        assertEquals("", activity.input2.getText().toString());
+        assertEquals("", activity.output.getText().toString());
     }
 }
